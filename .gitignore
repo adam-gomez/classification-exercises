@@ -6,3 +6,5 @@ Thumbs.db
 .vscode/
 *.csv
 package.json
+titanic.csv
+iris.csv
