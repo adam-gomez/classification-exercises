@@ -1,4 +1,5 @@
 from env import user, password, host
+import os
 
 def get_connection(db, user=user, host=host, password=password):
     return f'mysql+pymysql://{user}:{password}@{host}/{db}'
