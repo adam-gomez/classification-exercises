@@ -88,9 +88,9 @@ def prep_titanic(cached=True):
     df = df.drop(columns='deck')
     
     # split data into train, validate, test dfs
-    train, validate, test = titanic_split(df)
+    #train, validate, test = titanic_split(df)
     
     # impute mean of age into null values in age column
-    train, validate, test = impute_mean_age(train, validate, test)
+    #train, validate, test = impute_mean_age(train, validate, test)
     
-    return train, validate, test
+    return df
