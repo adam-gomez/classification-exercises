@@ -78,19 +78,22 @@ def prep_titanic(cached=True):
     # drop rows where embarked/embark town are null values
     df = df[~df.embarked.isnull()]
     
+    # convert sex into numeric data
+    df['is_female'] = df.sex.apply(lambda x: 0 if x == 'male' else 1)
+
     # encode embarked using dummy columns
     titanic_dummies = pd.get_dummies(df.embarked, drop_first=True)
     
     # join dummy columns back to df
     df = pd.concat([df, titanic_dummies], axis=1)
     
-    # drop the deck column
-    df = df.drop(columns='deck')
+    # drop the deck and sex columns
+    df = df.drop(columns=['deck', 'sex'])
     
     # split data into train, validate, test dfs
-    #train, validate, test = titanic_split(df)
+    train, validate, test = titanic_split(df)
     
     # impute mean of age into null values in age column
-    #train, validate, test = impute_mean_age(train, validate, test)
+    train, validate, test = impute_mean_age(train, validate, test)
     
-    return df
+    return train, validate, test
